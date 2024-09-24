@@ -1,0 +1,88 @@
+baseURL: "https://VarunArora14.github.io/v-log/"
+languageCode: en-us
+title: V'log
+theme: PaperMod
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema., can be changed to development
+  title: V'log
+  description: "Hello there, my name is Varun Arora and here is my blog post that captures my learning so far"
+  keyWords:
+    [blog, Portfolio, PaperMod, Kubernetes, GenAI, Generative AI, Devops, Linux]
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  # comments: true # need comment service to be integrated first
+
+  # home-info mode
+  homeInfoParams:
+    Title: 👋 Hello there. Welcome to V'log
+    Content: Hi, I am Varun. Currently I am working on building scalable Generative AI applications at Infosys. I have experience as a Full stack + DevOps engineer. I will document my learning notes in this blog. Nice to meet you 😀
+
+  socialIcons:
+    - name: linkedin
+      url: "https://www.linkedin.com/in/varun-arora-335225192/"
+    - name: leetcode
+      url: "https://leetcode.com/u/RDXV/"
+    - name: github
+      url: "https://github.com/VarunArora14"
+
+  assets:
+    disableHLJS: true
+    favicon: "favicons/favicon.ico"
+    #     favicon16x16: "<link / abs url>"
+    # favicon32x32: "favicons/favicon-32x32.png"
+  #     apple_touch_icon: "<link / abs url>"
+  #     safari_pinned_tab: "<link / abs url>"
+
+  # for search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - identifier: Posts
+      name: Posts
+      url: /posts/
+      weight: 10
+    - identifier: Search
+      name: Search
+      url: /search/
+      weight: 15
+    - identifier: Tags
+      name: Tags
+      url: /tags/
+      weight: 20
+    - identifier: Archive
+      name: Archive
+      url: /archive/
+      weight: 25
+    - identifier: resume
+      name: My Resume
+      url: https://drive.google.com/file/d/1z1DYR6Y2YSmF4o32gOdyfkrY14Kzi8IP/view?usp=drive_link
+      weight: 30
+taxonomies:
+  category: categories
+  tag: tags
+
+markup:
+  highlight:
+    # anchorLineNos: true
+    codeFences: true
+    guessSyntax: true
+    # lineNos: true
+    # noClasses: false
+    style: paraiso-light
