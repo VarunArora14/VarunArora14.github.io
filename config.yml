@@ -1,7 +1,7 @@
 baseURL: "https://VarunArora14.github.io"
 languageCode: en-us
 title: V'log
-theme: github.com/adityatelange/hugo-PaperMod
+theme: PaperMod
 
 outputs:
   home:
