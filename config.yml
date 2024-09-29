@@ -70,10 +70,14 @@ menu:
       name: Archive
       url: /archive/
       weight: 25
+    - identifier: Projects
+      name: Projects
+      url: /projects/
+      weight: 30
     - identifier: resume
       name: My Resume
       url: https://drive.google.com/file/d/1z1DYR6Y2YSmF4o32gOdyfkrY14Kzi8IP/view?usp=drive_link
-      weight: 30
+      weight: 35
 taxonomies:
   category: categories
   tag: tags
@@ -86,3 +90,6 @@ markup:
     # lineNos: true
     # noClasses: false
     style: paraiso-light
+    goldmark:
+      renderer:
+        unsafe: true

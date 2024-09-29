@@ -1,0 +1,65 @@
+<a class="heading" href="https://github.com/{{ .Get "user" }}/{{ .Get "repo" }}" target="_blank">
+<div class="github-repo-widget" id="repo-{{ .Get "repo" }}">
+    <h3>
+      <h3 >
+        {{ .Get "repo" }}
+      </h3>
+    </h3>
+    <p class="repo-about">Loading description...</p>
+  </div>
+</a>
+  
+  <style>
+  .github-repo-widget {
+    border: 1px solid #e1e4e8;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  .github-repo-widget h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  h3 {
+    text-decoration: none;
+    color: #158b8f;
+  }
+  
+  h3:hover {
+    color: #1dafb4;
+  }
+  
+  .github-repo-widget .repo-about {
+    margin-top: 8px;
+    color: #586069;
+    font-size: 0.9em;
+  }
+  </style>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const repoName = "{{ .Get "repo" }}";
+      const userName = "{{ .Get "user" }}";
+      const aboutElement = document.querySelector("#repo-" + repoName + " .repo-about");
+  
+      fetch(`https://api.github.com/repos/${userName}/${repoName}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.description) {
+            aboutElement.textContent = data.description;
+          } else {
+            aboutElement.textContent = "No description available.";
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching repository info:", error);
+          aboutElement.textContent = "Failed to load description.";
+        });
+    });
+  </script>
+  

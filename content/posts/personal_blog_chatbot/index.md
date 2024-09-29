@@ -3,9 +3,8 @@ title: "Building Advanced Chatbot On Personal Blog"
 date: 2024-09-29T01:13:12+05:30
 draft: false
 tags: ["Langchain", "GenAI", "RAG", "Advanced"]
+ShowToc: true
 ---
-
-### Building RAG Chatbot on my Personal Blog
 
 So I have been working on GenAI applications for past few months and decided to build something using RAG. I could not think of some interesting resources so I decided to take my own blog content as the data to build my RAG chatbot on.
 Please note that the following content is going to be almost same as my medium blog - https://medium.com/@varunarora1408/building-rag-chatbot-on-my-personal-blog-ff89ac772c69
@@ -148,6 +147,8 @@ def createVectorDatabase():
 Now, for performing RAG, I decided to use 2 advanced techniques — **Query Decomposition** and **RAG Fusion**. The reason being RAG Fusion is quite fast and gives good quality responses while Query Decomposition seems to give me best quality responses taking more time, so why not implement both?
 
 ![alt text](image-1.png)
+
+### RAG Fusion
 
 For each user question, we first validate the question using custom class called **LLMResponse** which inherits from Pydantic where we tell LLM to classify whether the user question is related to our blog content or not. It then uses the field **errorMessage** of the response to decide whether it is valid or not. Refer to this part again in the code.
 
@@ -752,7 +753,7 @@ Congrats, you should have you streamlit app running. I have put the vectorDB and
 
 Here is my deployed website — https://personal-blog-chatbot.streamlit.app/
 
-These are screenshots of the app -
+## Screenshots
 
 _home page_
 ![alt text](image-3.png)
@@ -766,6 +767,8 @@ _RAG fusion question — Gives source urls from my blog_
 
 _Query decomposition question answered with sources_
 ![alt text](image-5.png)
+
+## References
 
 Refer to the source code repo here — https://github.com/VarunArora14/Personal-Blog-Chatbot
 
