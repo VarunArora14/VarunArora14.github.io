@@ -17,7 +17,6 @@ params:
   ShowReadingTime: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
-  # comments: true # need comment service to be integrated first
 
   # home-info mode
   homeInfoParams:
