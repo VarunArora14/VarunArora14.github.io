@@ -126,7 +126,6 @@ def storeBlogDocs():
         pickle.dump(filteredDocs, f)
 
 
-# def embedDocumentsToFaiss():
 
 def createVectorDatabase():
     # can replace with - BAAI/bge-base-en-v1.5
