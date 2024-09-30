@@ -4,8 +4,6 @@ layout: "single" # is necessary
 summary: "Explore my personal projects on GitHub that I have built while learning new things"
 showtoc: true
 showReadingTime: false
-noComment: true
-noLike: true
 ---
 
 <!-- reference - https://github.com/k10sj02/thedataplaybook/tree/main/content -->
