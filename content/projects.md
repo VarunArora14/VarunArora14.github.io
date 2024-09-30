@@ -14,7 +14,7 @@ The following are projects that I have worked on as part of my learning -
 
 ## Personal-Blog-Chatbot
 
-**Description:** Built a chatbot using advanced RAG techniques that answers question based on my blog website ([here](https://varunarora14.github.io/)) along with source blog posts from where the answer came from.
+**Description:** Built a chatbot using advanced RAG techniques that answers question based on my blog website ([here](https://varunarora14.github.io/)) along with source blog posts from where the answer came from. The chatbot is deployed on streamlit here - https://personal-blog-chatbot.streamlit.app/
 
 **Stacks:** Python, Langchain, Google Gemini 1.5-flash, RAG
 
