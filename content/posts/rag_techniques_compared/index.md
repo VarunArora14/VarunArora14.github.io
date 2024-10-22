@@ -205,4 +205,12 @@ Problems -
 5. **Balancing speculative answers**:
    - **HyDe** offers a valuable solution for enhancing retrieval in sparse datasets, but its use should be balanced with caution to prevent speculative or "hallucinated" responses.
 
+---
+
 **Note** - HyDe does not work well if data is domain specific and specialised which may not exist on data on which the LLM is trained upon. Consider company related documents or research data based on which RAG app is being created. In this scenario, HyDe generate docs might not semantically match well with data as compared to case where data in vectorDB is more generic in nature.
+
+RAG techniques having to deal with structured data for context cannot rely on hypothetical documents to be used in intermediate steps as it might lead to answers being biased towards text chunks/data.
+
+One way of dealing with **structured data** to be used as context would be to create another Hierarchical index over this structured data index where the Hierarchical index stores the **core meaning of the data** based on which summaries/explanation can be created which can be used as data in the index with **metadata** being stored to filter the exact chunk in the data index.
+
+For data considering of SQL or JSON that might be huge or does not contain much information based on which these summaries/explanation can be created as Hierarchical indexes, it is a better idea to rather **create Agents that can generate queries to fetch responses from these data stored in a database**.
