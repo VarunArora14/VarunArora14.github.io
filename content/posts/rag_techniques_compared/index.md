@@ -1,6 +1,6 @@
 ---
 title: "Advanced RAG Techniques Compared with Workflow Diagrams"
-date: 2024-10-18T10:23:12+05:30
+date: 2024-10-19T10:23:12+05:30
 draft: false
 tags: ["System Design", "GenAI", "RAG", "Advanced"]
 ShowToc: true
