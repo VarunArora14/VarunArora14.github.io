@@ -2,6 +2,7 @@ baseURL: "https://VarunArora14.github.io"
 languageCode: en-us
 title: V'log
 theme: PaperMod
+enableRobotsTXT: True
 
 outputs:
   home:
