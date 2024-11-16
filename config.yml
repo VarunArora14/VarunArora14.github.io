@@ -18,11 +18,12 @@ params:
   ShowReadingTime: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
+  social: true
 
   # home-info mode
   homeInfoParams:
     Title: 👋 Hello there. Welcome to V'log
-    Content: Hi, I am Varun. Currently I am working on building scalable Generative AI applications at Infosys. I have experience as a Full stack + DevOps engineer. I will document my learning notes in this blog. Nice to meet you 😀
+    Content: Hi, I’m Varun. I work at Infosys, building scalable Applied AI solutions with a focus on microservices, system design, and full-stack + DevOps practices. In this blog, I’ll share my learnings and insights as I explore these technologies. Glad to have you here! 😊
 
   socialIcons:
     - name: linkedin
