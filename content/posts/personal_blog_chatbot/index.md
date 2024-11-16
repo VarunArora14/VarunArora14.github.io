@@ -1,6 +1,6 @@
 ---
 title: "Building Advanced Chatbot On Personal Blog"
-date: 2024-09-29T01:14:12+05:30
+date: 2024-09-29T01:15:12+05:30
 draft: false
 tags: ["Langchain", "GenAI", "RAG", "Advanced"]
 ShowToc: true
@@ -9,7 +9,7 @@ ShowToc: true
 So I have been working on GenAI applications for past few months and decided to build something using RAG. I could not think of some interesting resources so I decided to take my own blog content as the data to build my RAG chatbot on.
 Please note that the following content is going to be almost same as my medium blog - https://medium.com/@varunarora1408/building-rag-chatbot-on-my-personal-blog-ff89ac772c69
 
-So, here was the rough idea that came to my mind to create this application -
+So, here was the rough idea that came to my mind to create this application-
 
 ![alt text](image.png)
 
