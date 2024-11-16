@@ -5,7 +5,7 @@ draft: false
 tags: ["Networking", "Load balancer", "Reverse Proxy", "Networking"]
 ---
 
-**IOPS (Input/Output Operations Per Second)** is a measure of the **NUMBER of input/output operations that a system can perform in a second**. An I/O operation refers to **any read or write operation that accesses data on a storage device**, such as a hard disk drive or solid-state drive. IOPS is typically used to **measure the random access performance of a storage system, since random I/O operations are typically more demanding than sequential I/O operations**.
+**IOPS (Input/Output Operations Per Second)** is a measure of **NUMBER of input/output operations that a system can perform in a second**. An I/O operation refers to **any read or write operation that accesses data on a storage device**, such as a hard disk drive or solid-state drive. IOPS is typically used to **measure the random access performance of a storage system, since random I/O operations are typically more demanding than sequential I/O operations**.
 
 **Throughput**, on the other hand, refers to the **AMOUNT of data that a system can transfer in a given period of time**, typically measured in megabytes per second (MB/s) or gigabytes per second (GB/s). Throughput is often used to measure the **sequential access performance of a storage system, since sequential I/O operations are typically more efficient than random I/O operations**.
 Throughput is determined by the **speed and capacity of the storage medium**, as well as other factors such as the size of the I/O requests, the number of concurrent I/O operations, and the efficiency of the I/O subsystem.
