@@ -56,7 +56,7 @@ Other Implementation Choices:
 - In Redis, for fetching all key-value pairs as part of the API, I used the `scan()` method and not the `keys()` method because for a larger number of key-value pairs, the `keys()` method blocks the server while the `scan()` method brings pagination, giving a few results at a time and maintaining cursor position as well. Note that the **cursor** is an index to the iterator which the scan command updates for subsequent calls (same as the next page for pagination). The `scan` method works with the user initializing `cursor` to 0 and ends when the server returns a cursor of 0. It works by updating the cursor with each call and returning it to the user for the next iteration step. We use the `scan_iter` abstraction by the redis-py package that **abstracts away cursor management and directly provides a Python iterator** for easier loops. This method is superior to `KEYS` which has blocking code and blocks IO operations until the processing is complete.
 - The DB connections for Redis and MongoDB are stored inside the **FastAPI app state** as part of best practice, providing an **async context manager** for managing the lifecycle of the FastAPI app. This context manager allows managing resources that need to be set up before the application starts and cleaned up after the application stops.
 
-Redis `scan_iter` implementation:
+Redis `scan_iter()` implementation:
 
 ```python
 pairs = {}
