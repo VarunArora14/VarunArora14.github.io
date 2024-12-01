@@ -253,12 +253,12 @@ Naming convections with length restrictions and character limits are mentioned h
 
 **Use case:** Labels enable users to map their own organizational structures onto system objects in a loosely coupled fashion, without requiring clients to store these mappings.
 
-![a2a1dee2c60b2ad8d69b701842ec676e.png](:/af8bbfd4afe249edacea9c6f58117e87)
+![Image 1.png](1.png)
 
 ## Recommended Labels
 
 See examples here - https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
-![cfd432a9a3018338558c056a54b545dd.png](:/bfbb186630c44454885a73e007da1c5e)
+![Image 2](2.png)
 
 ---
 
@@ -270,7 +270,7 @@ In Kubernetes, namespaces provides a mechanism for **isolating groups of resourc
 
 Namespaces are a way to divide cluster resources between multiple users
 
-![ea897bce8e1c4fa36a3aac31b5f42232.png](:/1e18820260b84195a9583ecb251052be)
+![Image 3.png](3.png)
 
 **Not all objects are in namespace**. Low level resources such as **nodes** and **persistentVolumes** are **not** in any namespace.
 
