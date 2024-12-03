@@ -90,15 +90,6 @@ Additional things found as part of learning -
 - For making requests to other containers running in same docker internal network, use their **container name as the hostname for automatic DNS resolution for container names**. If the container name is **mongo2** then conn url is `mongodb://mongo2:27017`. Similarly, if for redis the container name is **redis**, then it's conn url is `redis://redis:6379/0`. Refer to the format - `redis://[:password]@host:port[/db_number]`. For local redis, it will be `redis://localhost:6379/0`.
   Refer to redis-py documentation for more asyncio - https://redis-py.readthedocs.io/en/stable/examples/asyncio_examples.html
 
-### Potential Improvements to implementation
-
-- The `created_date`, `expiration_date` can be added to service to make the service handle expiries of urls.
-- The random short url generation can be replaced with KGS (Key Generation Service) which offline prepares a database of keys which are then used to create these short urls by taking that key. For concurrency, once key is taken, it should be marked to not be used. For multiple server scenarios, it can have 2 DBs (used and unused keys) and can transfer the key from used to unused as soon as the service gives key to one of the app servers. For a 6 character short code, the DB size will be `6 x 68.7B = 412 GB`.
-- We wil also need KGS in a cluster so if master fails then the replica becomes master as a standby/read replica is needed in case of failover.
-- We need to decide the cache size for redis, this can be around 20% of the daily traffic (assuming 80% of the traffic is by 20% of the urls) . Also, LRU key eviction strategy as used now should be decent. These numbers are taken from a system design website - https://www.designgurus.io/blog/url-shortening
-- We need LB for client to application server, application server to mongoDB, application server to redis. This can be easily done with setting them in cluster config in k8s and use round robin as default load balancing algo.
-- For purging or cleaning the expired urls, we can have functionality that if user clicks on expired url(having existing mapping in DB but expired) we return error of expiry and mark it expired (flag as part of db object or simply delete it). If we have a flag then we can run crons every x hours to delete all expired urls `current_time > expiry_time`. This handles cases when urls are expired but no one accesses them for a very long time without getting hits taking increasing space in DB.
-
 ### Ideal URL Shortener System Design
 
 ![Image 2](url-shortener-design.png)
