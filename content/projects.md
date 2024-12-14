@@ -10,6 +10,23 @@ showReadingTime: false
 
 The following are projects that I have worked on as part of my learning -
 
+## URL Shortener System
+
+**Description:** Built and deployed url shortener application built with FastAPI along with MongoDB and Redis on Kubernetes to implement the classic system design problem.
+
+Medium post on building the application with notes for deployment and configuration setup for local kubernetes, redis etc -
+
+- **Part 1** - https://medium.com/@varunarora1408/url-shortener-system-design-implementation-part-1-afd97618d917
+- **Part 2** - https://medium.com/@varunarora1408/url-shortener-system-design-implementation-part-2-0bd9b7a27742
+
+**Technology/Tools:** FastAPI, Redis, MongoDB, Kubernetes, Docker, Github Actions
+
+**Skills:** Kubernetes, API building, CI/CD, Unit Testing, Caching, Networking
+
+{{< github-repo user="VarunArora14" repo="url-shortener-system-design" >}}
+
+---
+
 ## Personal-Blog-Chatbot
 
 **Description:** Built a chatbot using advanced RAG techniques that answers question based on my blog website ([here](https://varunarora14.github.io/)) along with source blog posts from where the answer came from. The chatbot is deployed on streamlit here - https://personal-blog-chatbot.streamlit.app/
