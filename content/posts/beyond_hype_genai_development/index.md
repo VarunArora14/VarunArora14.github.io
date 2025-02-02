@@ -132,6 +132,18 @@ The problem in this scenario is similar to the previous problem **Additional Inf
 
 Since it is possible that workflows and their outputs are not stored somewhere, it becomes harder to debug such workflows where you have to add functionality to store LLM generated outputs of each component and check for a **given dataset**, how is each component performing for it's own dataset of questions and answers where the first component has to be improved first.
 
+So if my workflow has 3 components and each of them has accuracy `a1`, `a2` and `a3`, then my combined system accuracy will be `a1*a2*a3`. So for example if these numbers are 95%, 92% and 94% (these are very high numbers by the way), then the net system accuracy would **82.156%**! This is much lower than one would anticipate acurracy of such systems to be.
+This leads to developers having choice to use the **most expensive models** in hope for better accuracy which blows budgets and find **improvements in prompts** to increase accuracy of each component.
+Now let's consider 2 set of accuracies on a data set -
+
+- 1. A1 => `a1`=99%, `a2`=89%, `a3`=98%
+- 2. A2 => `a1`=97%, `a2`=95%, `a3`=94%
+
+_Ques: Which of the above will have net highest accuracy for final outputs?_
+
+Answer: A1 has accuracy 86.3% while A2 has accuracy 86.6%. This shows that despite the first system having 2 highly accurate components, the one with weaker accuracy drags down the whole system's accuracy! In reality, it is very hard to get LLM Agents/workflow components' accuracy close to 99%, it makes much more sense to keep evaluating the components and maximize each component's accuracy so that it follows similar accuracy numbers like the second set of accuracies above which is more likely to be achieved.
+It requires continuous and robust evaluation of these components to find their accuracies for a given data set to determine whether these components can be improved or not till a **threshold accuracy**.
+
 Now, this way is difficult especially if the **component outputs need human judgement** to decide whether the LLM generated answer is right or not and then calculate the accuracy and find patterns in non-accurate ones.
 
 After evaluation, the first thing that comes in developer's mind is to **improve is the prompt**. The accuracy of the first component of the system should maximised first and then we should go down sequentially. Otherwise if we start from the end or in midway, we might end up wasting a lot of time while improving nothing.
@@ -140,7 +152,9 @@ After evaluation, the first thing that comes in developer's mind is to **improve
 
 This **finding the weak prompt** for such sequential workflows then comes with additional effort of people required to generated and evaluate the workflow component and then comparing results of different prompts to decide the prompt providing best accuracy (which again may be subjective or biased based off reviewer and dataset).
 
-**A single weak prompt in a sequential system can cause cascading failures in later steps. ince LLM workflows may not always store intermediary outputs, debugging becomes harder. Human evaluation is often required to assess where inaccuracies originate**
+**A single weak prompt in a sequential system can cause cascading failures in later steps. ince LLM workflows may not always store intermediary outputs, debugging becomes harder. Human evaluation is often required to assess where inaccuracies originate.**
+
+**Without proper evaluation of each component in such system, it becomes impossible to debug and pin point reasons of low accuracy of the workflow/system.**
 
 This puts developers of such GenAI applications confused in terms of **where to start to make the system more accurate and more importantly where to stop**. For this one has to decide early on to have **clear evaluation metrics** like -
 
