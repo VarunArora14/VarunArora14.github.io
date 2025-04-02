@@ -23,7 +23,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: 👋 Hello there. Welcome to V'log
-    Content: Hi, I’m Varun. I work at Infosys, building scalable Applied AI solutions with a focus on microservices, system design, and full-stack + DevOps practices. In this blog, I’ll share my learnings and insights as I explore these technologies. Glad to have you here! 😊
+    Content: Hi, I’m Varun. I work at Infosys, building scalable Applied AI applications with a focus on cloud native microservices, system design, and production DevOps practices. In this blog, I’ll share my learnings and insights as I explore these technologies. Glad to have you here! 😊
 
   socialIcons:
     - name: linkedin
