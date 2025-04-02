@@ -10,7 +10,7 @@ showReadingTime: false
 
 The following are projects that I have worked on as part of my learning -
 
-## URL Shortener System
+## Scalable URL Shortener
 
 **Description:** Built and deployed url shortener application built with FastAPI along with MongoDB and Redis on Kubernetes to implement the classic system design problem.
 
