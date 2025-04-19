@@ -14,7 +14,18 @@ params:
   title: V'log
   description: "Hello there, my name is Varun Arora and here is my blog post that captures my learning so far"
   keyWords:
-    [blog, Portfolio, PaperMod, Kubernetes, GenAI, Generative AI, Devops, Linux]
+    [
+      blog,
+      Portfolio,
+      PaperMod,
+      Kubernetes,
+      GenAI,
+      Python,
+      Microservices,
+      Distributed Systems,
+      DevOps,
+      Linux,
+    ]
   ShowReadingTime: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
@@ -23,7 +34,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: 👋 Hello there. Welcome to V'log
-    Content: Hi, I’m Varun. I work at Infosys, building scalable Applied AI applications with a focus on cloud native microservices, system design, and production DevOps practices. In this blog, I’ll share my learnings and insights as I explore these technologies. Glad to have you here! 😊
+    Content: Hi, I’m Varun. I work at Infosys, building scalable backend systems with a focus on microservices, distributed systems and following production DevOps practices. I am an AI enthusiast and have deployed AI Agents to production. In this blog, I’ll share my learnings and insights as I explore these technologies. Glad to have you here! 😊
 
   socialIcons:
     - name: linkedin
