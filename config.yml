@@ -88,7 +88,7 @@ menu:
       weight: 30
     - identifier: resume
       name: My Resume
-      url: https://drive.google.com/file/d/1z1DYR6Y2YSmF4o32gOdyfkrY14Kzi8IP/view?usp=drive_link
+      url: https://drive.google.com/file/d/1vm_fc6zV8aULVz4tfjJocgw0T9w9Es3X/view?usp=drive_link
       weight: 35
 taxonomies:
   category: categories
