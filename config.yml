@@ -4,6 +4,9 @@ title: V'log
 theme: PaperMod
 enableRobotsTXT: True
 
+pagination:
+  pagerSize: 1000 # show all posts on home page
+
 outputs:
   home:
     - HTML
@@ -34,7 +37,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: 👋 Hello there. Welcome to V'log
-    Content: Hi, I’m Varun. Currently I work at Infosys building scalable backend systems with a focus on microservices, distributed systems and following production DevOps practices. I am an AI enthusiast and have deployed AI Agents to production. In this blog, I’ll share my learnings and insights as I explore these technologies. Glad to have you here! 😊
+    Content: Hi, I’m Varun. Currently I work at Infosys building scalable backend systems with a focus on microservices, distributed systems and following production DevOps practices. I have built AI powered systems to production and in this blog, I’ll share my learnings and insights as I explore these technologies. Glad to have you here! 😊
 
   socialIcons:
     - name: linkedin
