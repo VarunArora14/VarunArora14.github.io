@@ -55,7 +55,7 @@ The use cases are -
 - **Custom Error Pages** - It can define custom error pages such as 404 or 500 for specific directories, providing a personalized user experience when errors occur.
 - **Caching** - .htaccess files can be used to configure caching settings or enable compression for certain file types, improving website performance
 
-```
+```text
 # Enable Gzip compression for certain file types
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml
@@ -73,7 +73,7 @@ The use cases are -
 
 For enabling **.htaccess**, enable .**htaccess** support in Apache: In the Apache server configuration (httpd.conf) file, you need to make sure that the **AllowOverride** directive is set to **All** for the directory where you want to use .htaccess.
 
-```
+```text
 <Directory /var/www/html>
     AllowOverride All
 </Directory>
@@ -90,7 +90,7 @@ The configuration directives found in a **.htaccess** file are applied to the **
 - Create an **htpasswd** file in system like **htpasswd -c /home/fellowship/.htpasswd user_name**. For this user, it will prompt for **password** which u enter and then it saves it that directory as hidden file.
 - Type the following in .htaccess file -
 
-```
+```text
 AuthType Basic
 AuthName "One does not simply"
 AuthUserFile /home/fellowship/.htpasswd
@@ -104,7 +104,7 @@ The **Require user** directive specifies the **username** of the user that is al
 
 - Make sure the directory in which this .htaccess file exists has configuration set as -
 
-```
+```text
 <Directory /var/www/html>
 AllowOverride All
 </Directory>
@@ -116,7 +116,7 @@ This **AllowOverride All** allows us to override global config settings with **.
 
 **first.conf**
 
-```
+```text
 <VirtualHost *:8003>
         DocumentRoot /var/www/first
         <Directory /var/www/first >
@@ -128,7 +128,7 @@ This **AllowOverride All** allows us to override global config settings with **.
 
 **/var/www/first/.htaccess**
 
-```
+```text
 AuthType Basic
 AuthName "This is a password protected Directory"
 AuthUserFile "/etc/httpd/.htpasswd"
@@ -143,7 +143,7 @@ It requires authentication of username "varun" with it's password in htpasswd fi
 
 ## Example .htaccess file
 
-```
+```bash
 # Enable the rewrite engine
 RewriteEngine On
 
@@ -200,7 +200,7 @@ It's important to ensure that the .htpasswd file is kept **secure**, as it conta
 
 After creating .httpasswd file, we can use it to protect a directory or file and for this we **create .htaccess file in directory you want to protect and add following lines** -
 
-```
+```text
 AuthType Basic
 AuthName "Restricted Area"
 AuthUserFile /path/to/htpasswd
@@ -235,7 +235,7 @@ Here's an example of how to define virtual hosts in Apache using separate config
 
 1. Create a configuration file for each virtual host in the "**sites-available**" directory. For example, create a file called "**example1.com.conf**" with the following contents:
 
-```
+```text
 <VirtualHost *:80>
     ServerName example1.com
     DocumentRoot /var/www/example1.com
@@ -245,7 +245,7 @@ Here's an example of how to define virtual hosts in Apache using separate config
 
 2. Create another file named **example2.com.conf** with following contents:
 
-```
+```text
 <VirtualHost *:80>
     ServerName example2.com
     DocumentRoot /var/www/example2.com
@@ -255,7 +255,7 @@ Here's an example of how to define virtual hosts in Apache using separate config
 
 3. Create symbolic links to these configuration files in the "**sites-enabled**" directory. On Ubuntu/Debian, you can use the "**a2ensite**" command to enable a virtual host and create a symbolic link:
 
-```
+```bash
 sudo a2ensite example1.com.conf
 sudo a2ensite example2.com.conf
 ```
@@ -396,7 +396,7 @@ When a client sends a request to the server, a worker thread is created to handl
 
 Here is an example of how to configure the **MaxRequestWorkers** directive in Apache:
 
-```
+```text
 <IfModule mpm_worker_module>
     ServerLimit 16
     StartServers 2
@@ -422,7 +422,7 @@ It's important to note that the actual number of worker threads that are created
 
 Here's an example of how these two directives might be used together:
 
-```
+```text
 <IfModule mpm_worker_module>
     ServerLimit 16
     StartServers 2

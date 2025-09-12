@@ -163,7 +163,7 @@ assert response.json() == {"message":"Home page"}
 
 #### Current Hierarchy
 
-```
+```text
 project/
 │
 ├── fapp.py

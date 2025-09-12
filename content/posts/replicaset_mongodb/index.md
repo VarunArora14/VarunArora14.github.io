@@ -13,7 +13,7 @@ First we need a **keyfile** and appropriate permissions.
 
 Use **OpenSSL** to create keyfile -
 
-```
+```bash
 sudo mkdir -p /usr/local/var/mongodb/pki/
 openssl rand -base64 741 > /usr/local/var/mongodb/pki/replicaset-keyfile
 chmod 400 /usr/local/var/mongodb/pki/replicaset-keyfile
@@ -45,7 +45,7 @@ replication:
 
 Create **dbpath** and **log** path for same
 
-```
+```bash
 mkdir -p /usr/local/var/mongodb/node1
 mkdir -p /usr/local/var/log/mongodb/node1
 ```
@@ -73,7 +73,7 @@ replication:
   replSetName: replicaset-example
 ```
 
-```
+```bash
 mkdir -p /usr/local/var/mongodb/node2
 mkdir -p /usr/local/var/log/mongodb/node2
 ```
@@ -101,7 +101,7 @@ replication:
   replSetName: replicaset-example
 ```
 
-```
+```bash
 mkdir -p /usr/local/var/mongodb/node3
 mkdir -p /usr/local/var/log/mongodb/node3
 ```
@@ -110,7 +110,7 @@ mkdir -p /usr/local/var/log/mongodb/node3
 
 **Now launch the 3 mongod processes by following commands -**
 
-```
+```bash
 mongod -f node1.conf
 mongod -f node2.conf
 mongod -f node3.conf
@@ -126,7 +126,7 @@ Do `netstat -tulnp` to check them if they are running.
 
 Inside it, run command,
 
-```
+```bash
 rs.initiate(); // to initiate the replica set
 use admin;     //switch to admin database for creating root user
 db.createUser({
@@ -150,7 +150,7 @@ Check using command `rs.isMaster()` to check if current is **master node** and o
 
 To add other nodes write the command -
 
-```
+```text
 rs.add("localhost:27012") //to add second node running on port 27012
 rs.add("localhost:27013") //to add third node running on port 27013
 ```

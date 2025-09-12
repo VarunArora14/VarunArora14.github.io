@@ -33,7 +33,7 @@ Here's an example of how to define virtual hosts in Apache using separate config
 
 1. Create a configuration file for each virtual host in the "**sites-available**" directory. For example, create a file called "**example1.com.conf**" with the following contents:
 
-```
+```text
 <VirtualHost *:80>
     ServerName example1.com
     DocumentRoot /var/www/example1.com
@@ -43,7 +43,7 @@ Here's an example of how to define virtual hosts in Apache using separate config
 
 2. Create another file named **example2.com.conf** with following contents:
 
-```
+```text
 <VirtualHost *:80>
     ServerName example2.com
     DocumentRoot /var/www/example2.com
@@ -53,7 +53,7 @@ Here's an example of how to define virtual hosts in Apache using separate config
 
 3. Create symbolic links to these configuration files in the "**sites-enabled**" directory. On Ubuntu/Debian, you can use the "**a2ensite**" command to enable a virtual host and create a symbolic link:
 
-```
+```bash
 sudo a2ensite example1.com.conf
 sudo a2ensite example2.com.conf
 ```
@@ -73,7 +73,7 @@ Some important directives are -
 **This allows for safe configuration that doesn't cause errors or conflicts when a required module is not available. It also provides flexibility to enable or disable specific configuration settings based on the presence or absence of certain modules, making it useful in complex Apache configurations where different modules may be installed or enabled on different servers or virtual hosts.**
 Syntax:
 
-```
+```text
 <IfModule module-name>
     # Configuration directives specific to the module
 </IfModule>
@@ -82,7 +82,7 @@ Syntax:
 - **Directory** - Controls **configuration settings** for **specific directory** or directory hierarchy within **DocumentRoot**. It can be used to **set permissions, authentication, and other security-related settings**.
 - **Files** - directive is used to **set conditional configuration settings** for **filetypes** such as below (prevent .htaccess and .htpasswd files from being viewed by Web clients )
 
-```
+```text
 <Files ".ht*">
     Require all denied
 </Files>
@@ -117,7 +117,7 @@ Filters are defined using **Apache directives in the server or virtual host conf
 
 Here's an example of how to configure an output filter in Apache to enable gzip compression on response bodies using mod_deflate:
 
-```
+```text
 # Enable mod_deflate
 LoadModule deflate_module modules/mod_deflate.so
 
@@ -141,7 +141,7 @@ Action my-file-type "/cgi-bin/program.cgi"
 
 In this example, requests for files with a file extension of .xyz are handled by the specified cgi script /cgi-bin/program.cgi.
 
-```
+```bash
 # Map .php files to the PHP handler
 AddHandler php5-script .php
 
@@ -149,7 +149,7 @@ AddHandler php5-script .php
 AddHandler php7-script .php7
 ```
 
-```
+```bash
 # Map .php files to the PHP handler
 AddHandler php5-script .php
 
@@ -174,7 +174,7 @@ The use cases are -
 - **Custom Error Pages** - It can define custom error pages such as 404 or 500 for specific directories, providing a personalized user experience when errors occur.
 - **Caching** - .htaccess files can be used to configure caching settings or enable compression for certain file types, improving website performance
 
-```
+```text
 # Enable Gzip compression for certain file types
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml
@@ -192,7 +192,7 @@ The use cases are -
 
 For enabling **.htaccess**, enable .**htaccess** support in Apache: In the Apache server configuration (httpd.conf) file, you need to make sure that the **AllowOverride** directive is set to **All** for the directory where you want to use .htaccess.
 
-```
+```text
 <Directory /var/www/html>
     AllowOverride All
 </Directory>

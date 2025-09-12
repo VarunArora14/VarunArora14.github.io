@@ -145,7 +145,7 @@ server/releases/latest/download/components.yaml`
 
 After setting server metrics, you can get metrics for any node or pod using the kubectl get tool. Use the following commands to get metrics for all nodes and pods.
 
-```
+```bash
 # Get the metrics for all nodes
 kubectl get --raw /apis/metrics.k8s.io/v1beta1/nodes
 
@@ -155,7 +155,7 @@ kubectl get --raw /apis/metrics.k8s.io/v1beta1/pods
 
 You can also get metrics separately for one selected node or pod. To do this, you need to specify its name, as shown in the following commands.
 
-```
+```bash
 # Get the metrics for node <node_name>
 kubectl get --raw /apis/metrics.k8s.io/v1beta1/<node_name> |  jq '.'
 # Get the metrics for pode <pod_name>
@@ -199,7 +199,7 @@ http://127.0.0.1:8001/apis/apps/v1/deployments
 
 ## Raw requests
 
-```
+```bash
 # Sends HTTP GET request
 $ kubectl get --raw /api/v1/namespaces/default/pods
 
@@ -263,7 +263,7 @@ Works for level 800 as well
 
 ## kubectl events
 
-```
+```bash
 # list events by timestamp
 kubectl get events --sort-by=.metadata.creationTimestamp
 
@@ -276,7 +276,7 @@ kubectl get events -o json
 kubectl get events -n default
 ```
 
-```
+```text
          {
   4             "apiVersion": "v1",
   5             "count": 1,
@@ -310,7 +310,7 @@ kubectl get events -n default
 
 ## kubectl cluster change of state
 
-```
+```bash
 # compares the current state of cluster against current state(applied configuration) and manifest config
 
 kubectl diff -f ./my-manifest.yml
@@ -322,7 +322,7 @@ This is important when `kubectl edit deployment/my-deployment` has been done
 
 https://learnk8s.io/kubernetes-rollbacks
 
-```
+```bash
 kubectl set image deployment/frontend www=image:v2               # Rolling update "www" containers of "frontend" deployment, updating the image
 kubectl rollout history deployment/frontend                      # Check the history of deployments including the revision
 kubectl rollout undo deployment/frontend                         # Rollback to the previous deployment
@@ -333,7 +333,7 @@ kubectl rollout restart deployment/frontend                      # Rolling resta
 
 It is useful in case you want to go back to **previous rollout** without running pipeline again. **Kubernetes stores past 10 rollouts, you can set them as well**.
 
-```
+```text
 spec:
 	revisionHistoryLimit: 100
 ```
@@ -342,7 +342,7 @@ Here you set storing the past 100 replicasets with pods=0
 
 `kubectl rollout undo deployment/frontend --to-revision=2 ` rolls back to 2nd revision.
 
-```
+```text
 deployments "nginx-deployment"
 REVISION    CHANGE-CAUSE
 1           kubectl apply --filename=https://blinkops.com/examples/controllers/nginx-deployment.yaml
@@ -367,7 +367,7 @@ You can view yaml file of replicaset with revision to see.
 
 ## Logs
 
-```
+```bash
 # out logs
 kubectl logs my-pod
 
@@ -384,7 +384,7 @@ kubectl logs -f my-pod
 
 ## More Important commands
 
-```
+```bash
 # Attach to Running Container
 kubectl attach my-pod -i
 
@@ -432,7 +432,7 @@ kubectl rollout undo deployments/kubernetes-bootcamp
 
 ## API resources
 
-```
+```bash
 kubectl api-resources
 kubectl api-resources --namespaced=true
 kuectl api-resources -o wide
@@ -440,7 +440,7 @@ kuectl api-resources -o wide
 
 ## Kubectl output for verbosity
 
-```
+```text
 --v=0	Generally useful for this to always be visible to a cluster operator.
 --v=1	A reasonable default log level if you don't want verbosity.
 --v=2	Useful steady state information about the service and important log messages that may correlate to significant changes in the system. This is the recommended default log level for most systems.
@@ -459,7 +459,7 @@ Example - `kubectl get pod -v=9`
 
 https://stackoverflow.com/questions/33887194/how-to-set-multiple-commands-in-one-yaml-file-with-kubernetes
 
-```
+```bash
 command: ["/bin/sh","-c"]
 args: ["command one; command two && command three"]
 ```

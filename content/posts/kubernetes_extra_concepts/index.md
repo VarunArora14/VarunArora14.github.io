@@ -69,7 +69,7 @@ It is possible to extend resources to a node **like volume attached to it and yo
 
 Put the correct node name to replace
 
-```
+```bash
 curl --header "Content-Type: application/json-patch+json" \
   --request PATCH \
   --data '[{"op": "add", "path": "/status/capacity/example.com~1dongle", "value": "4"}]' \
@@ -358,7 +358,7 @@ spec:
 - **Take backup** - `ETCDCTL_API=3 etcdctl --endpoints $ENDPOINT snapshot save snapshot.db`, where endpoint is `127.0.0.1:2379`
 - **Restore backup from .db** -
 
-```
+```bash
 ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 \
 --cacert=/etc/kubernetes/pki/etcd/ca.crt \
 --cert=/etc/kubernetes/pki/etcd/server.crt \

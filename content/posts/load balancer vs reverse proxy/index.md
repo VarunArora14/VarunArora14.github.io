@@ -51,7 +51,7 @@ Nginx has upstream module for this - https://nginx.org/en/docs/http/ngx_http_ups
 
 Example
 
-```
+```text
 http {
   upstream myproject {
     server 127.0.0.1:8000 weight=3;
@@ -165,7 +165,7 @@ Suppose you're using a web browser to access a website over HTTPS, which uses th
 
 For instance, a TCP segment might look like this:
 
-```
+```text
 Source Port: 49152
 Destination Port: 443
 Sequence Number: 1001
@@ -187,7 +187,7 @@ Now, let's dive into the details of the HTTP request at Layer 7:
 
 For example:
 
-```
+```text
 GET /example/page.html HTTP/1.1
 Host: www.example.com
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
