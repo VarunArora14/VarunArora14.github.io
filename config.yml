@@ -103,8 +103,9 @@ markup:
     codeFences: true
     guessSyntax: true
     # lineNos: true
-    # noClasses: false
+    noClasses: false # use CSS classes so theme can provide dark/light variants
     style: paraiso-light
-    goldmark:
-      renderer:
-        unsafe: true
+    styleDark: paraiso-dark
+  goldmark:
+    renderer:
+      unsafe: true

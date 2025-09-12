@@ -12,7 +12,7 @@ https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 Type `kubectl` in command prompt to get this -
 
-```
+```text
 kubectl controls the Kubernetes cluster manager.
 
  Find more information at: https://kubernetes.io/docs/reference/kubectl/
