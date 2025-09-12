@@ -82,9 +82,9 @@ menu:
       name: Archive
       url: /archive/
       weight: 25
-    - identifier: Projects
-      name: Projects
-      url: /projects/
+    - identifier: Portfolio
+      name: Portfolio
+      url: /portfolio/
       weight: 30
     - identifier: resume
       name: My Resume
