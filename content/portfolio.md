@@ -153,6 +153,37 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
     </div>
 </div>
 
+<div class="project-card enter-anim" data-category="realtime backend" data-repo="vdocs">
+    <div class="project-header">
+        <div class="badge-row"><span class="meta-badge">Realtime</span><span class="meta-badge">Collab</span></div>
+        <h3 class="project-title">📝 vDocs - Collaborative Editor</h3>
+    </div>
+    
+    <div class="project-description">
+        A full-stack collaborative document management platform with real-time editing capabilities. Features Google authentication, cross-platform mobile support, and seamless real-time collaboration.
+    </div>
+    
+    <div class="tech-stack">
+        <span class="tech-badge">Node.js</span>
+        <span class="tech-badge">Flutter</span>
+        <span class="tech-badge">Socket.io</span>
+        <span class="tech-badge">Google Cloud</span>
+        <span class="tech-badge">MongoDB</span>
+        <span class="tech-badge">Riverpod</span>
+    </div>
+    
+    <div class="skills-section">
+        <div class="skills-title">Key Skills Demonstrated:</div>
+        <div class="skills-list">Real-time Systems • Mobile Development • Authentication • State Management • Cloud Integration</div>
+    </div>
+    
+    <div class="project-links">
+        <a href="https://github.com/VarunArora14/vdocs" class="project-link github-link" target="_blank">
+            📂 View Code
+        </a>
+    </div>
+</div>
+
 <div class="project-card enter-anim" data-category="realtime ai" data-repo="align">
     <div class="project-header">
         <div class="badge-row"><span class="meta-badge accent">Mobile</span><span class="meta-badge">AI</span></div>
@@ -289,36 +320,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
     </div>
 </div>
 
-<div class="project-card enter-anim" data-category="realtime backend" data-repo="vdocs">
-    <div class="project-header">
-        <div class="badge-row"><span class="meta-badge">Realtime</span><span class="meta-badge">Collab</span></div>
-        <h3 class="project-title">📝 vDocs - Collaborative Editor</h3>
-    </div>
-    
-    <div class="project-description">
-        A full-stack collaborative document management platform with real-time editing capabilities. Features Google authentication, cross-platform mobile support, and seamless real-time collaboration.
-    </div>
-    
-    <div class="tech-stack">
-        <span class="tech-badge">Node.js</span>
-        <span class="tech-badge">Flutter</span>
-        <span class="tech-badge">Socket.io</span>
-        <span class="tech-badge">Google Cloud</span>
-        <span class="tech-badge">MongoDB</span>
-        <span class="tech-badge">Riverpod</span>
-    </div>
-    
-    <div class="skills-section">
-        <div class="skills-title">Key Skills Demonstrated:</div>
-        <div class="skills-list">Real-time Systems • Mobile Development • Authentication • State Management • Cloud Integration</div>
-    </div>
-    
-    <div class="project-links">
-        <a href="https://github.com/VarunArora14/vdocs" class="project-link github-link" target="_blank">
-            📂 View Code
-        </a>
-    </div>
-</div>
+
 
 </div>
 {{< /rawhtml >}}
