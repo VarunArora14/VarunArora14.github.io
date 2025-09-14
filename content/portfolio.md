@@ -153,6 +153,40 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
     </div>
 </div>
 
+<div class="project-card enter-anim" data-category="realtime ai" data-repo="align">
+    <div class="project-header">
+        <div class="badge-row"><span class="meta-badge accent">Mobile</span><span class="meta-badge">AI</span></div>
+        <h3 class="project-title">📅 Align – Smart Reminders</h3>
+    </div>
+    
+    <div class="project-description">
+        React Native + Expo app for natural-language reminders and lightweight daily goals. Parses phrases like “Call mom tomorrow at 2pm”, schedules local notifications, and stores data on-device with SQLite.
+    </div>
+    
+    <div class="tech-stack">
+        <span class="tech-badge">React Native</span>
+        <span class="tech-badge">Expo</span>
+        <span class="tech-badge">TypeScript</span>
+        <span class="tech-badge">NativeWind</span>
+        <span class="tech-badge">SQLite</span>
+        <span class="tech-badge">LangChain</span>
+    </div>
+    
+    <div class="skills-section">
+        <div class="skills-title">Key Skills Demonstrated:</div>
+        <div class="skills-list">Mobile Dev • Push Notifications • AI-assisted Parsing • Local Persistence • Testing with Jest</div>
+    </div>
+    
+    <div class="project-links">
+        <a href="https://github.com/VarunArora14/align" class="project-link github-link" target="_blank">
+            📂 View Code
+        </a>
+        <a href="https://github.com/VarunArora14/align#readme" class="project-link demo-link" target="_blank">
+            📖 README & Screenshots
+        </a>
+    </div>
+</div>
+
 <div class="project-card enter-anim" data-category="ai rag" data-repo="Personal-Blog-Chatbot">
     <div class="project-header">
         <div class="badge-row"><span class="meta-badge accent">Live</span><span class="meta-badge">RAG</span></div>
