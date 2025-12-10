@@ -37,7 +37,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: 👋 Hello there. Welcome to V'log
-    Content: Hi, I’m Varun. Currently I am building scalable backend systems with a focus on microservices, distributed systems and following production DevOps practices. I have built AI powered systems to production and in this blog, I’ll share my learnings and insights as I explore these technologies. Glad to have you here! 😊
+    Content: Hi, I’m Varun. Currently I am building scalable data pipelines and centralized data warehouses, distributed systems and following production DevOps practices. In this blog I’ll share my learnings and insights as I explore and learn new technologies. Glad to have you here! 😊
 
   socialIcons:
     - name: linkedin
