@@ -7,26 +7,26 @@ tags: ["LLM", "Vibe Coding"]
 
 ### Let's Vibe Code
 
-My team came across an interesting requirement that the senior and principal architects wanted everyone to **only vibe code** from now to build applications faster to market so they can onboard clients faster and can build the features quickly.
+My team encountered an interesting directive from leadership: to **exclusively use "vibe coding"** (AI-driven development) to build applications. The goal was to accelerate time-to-market and streamline feature delivery.
 
-The existing setup had numerous Java Spring Boot microservices which felt harder to maintain and run locally as code had to be compiled each time with new changes whereas JavaScript/TypeScript uses JIT compiler that compiles on save and this seemed to be a game changer to them. Plus the fact that LLMs are heavily trained on TypeScript code, it will give suggestions and make code changes much better than it could do to enterprise Java code.
+The existing setup relied on numerous Java Spring Boot microservices, which were perceived as heavy and slower to iterate on compared to a JavaScript/TypeScript ecosystem. The hypothesis was that since LLMs excel at TypeScript, switching tech stacks would allow us to leverage AI more effectively than with enterprise Java.
 
-So now a POC began with the following steps to follow - 
+So now a POC began with the following steps - 
 
 1. take an existing small serverless application
 2. create a prompt to get it's functionality from LLM
 3. pass the prompt again to LLM in Agent mode in GitHub copilot with empty folder data so it generates (hopefully) same code again
 4. review the new code and share feedback with leadership
 
-It seemed like an interesting experiment and we did it, until we realised we had to make this app working exactly as the previous application and then share insights. To make this even more interesting, we were told to ONLY change the single prompt used (no additional prompts allowed) and make the application working in single shot!
+It was an interesting experiment until we realized the constraint: we had to replicate the existing application's behavior exactly, but were restricted to modifying a *single* prompt. We were attempting a 'one-shot' generation for an entire application.
 
-If it gives errors, then open a new LLM session, fix the error and then pass the fix in the prompt again to run the whole process again! I could not imagine I had to follow this, but we had to. It took 3 days to come close to the existing application with multiple people trying multiple prompts to see which one gives them best results. We eventually hit a plateau where we found the LLM was just not doing a set of changes despite them being in the prompt. The prompt was now more than 1000+ lines (and had emojis 😊) and now I had to manually make the code changes by simply copying some content for the previous application and manually fixing logic error for the POC to end.
+If errors occurred, the process required starting a new LLM session, fixing the error contextually, and re-prompting. It took days to approximate the existing functionality via prompt changes and manual reviews. We eventually hit a plateau where the LLM refused to apply certain changes despite explicit instructions. The prompt grew to over 1,000 lines. We eventually had to intervene manually to fix logic errors and unblock the POC.
 
-It was becoming clear to me that LLM with proper prompts can give results close to desired results but it comes at a BIG time cost which needs to be further optimised for development to actually be faster.
+It became clear that while LLMs can produce impressive results, strict "one-shot" constraints introduce a significant time penalty compared to iterative coding.
 
-We sent the feedback that writing a single shot prompt to create an entire application did not make sense and it required much more manual changes. There were also many logic errors which have to be resolved and understood in planning phase and should not be an afterthought while fixing errors. The input and output schema, business logic, workflows have be to created to not go in circles later on.
+We provided feedback that writing a single shot prompt to create an entire application was inefficient and resulted in logic errors that were hard to debug. A more structured approach was needed—input/output schemas, business logic, and workflows had to be defined during a planning phase, not as an afterthought.
 
-After multiple discussions and going through the way other people are doing vibe coding with **blueprint** and **plan** prompts, we were told to come up with same for our next application to convert from Java to NodeJS.
+After multiple discussions, we pivoted to a "blueprint" and "plan" approach for the next application, which involved converting a service from Java to NodeJS.
 
 ### BluePrint Prompts
 
@@ -38,49 +38,49 @@ Zooming on the feature building prompt, here is further breakdown of the steps w
   -  do this multiple times if some functionalities are missing
   -  do proper review manually reading thousands of lines of stories/functional and Non-functional requirements created
 - Pass this prompt as context with new prompt to create this new nodeJS application
-- Now go through the files created manually reading through the functionality created and try to determine whether these changes are acceptable or not
-  - If they are not acceptable, get ready to hate yourself even more as you write the prompt again, wait for 10-15 minutes and have to read through thousands of lines again, just to decide whether these changes are acceptable or not!
-  - If you are accepting then most probably you have either given up or trust the AI to be way smarter than you
+- Manually review the generated files to determine if the changes are acceptable.
+  - If unacceptable, the cycle repeats: rewrite the prompt, wait for generation, and review thousands of lines of code again.
+  - If acceptable, you proceed, often trusting the AI's output significantly.
 - Run the application and manually verify all the functionalities working with Postman collection created
 
 After this, unit tests prompt was create and run, which created unit tests and then these tests should be all passing 100% as well before creating PR.
 
-This whole processing of rewriting this new application for a 5-10k size codebase could take around a day with reviews of prompts and you would be hoping the app starts and endpoints are all working. They are not.
+This process for rewriting a 5-10k line codebase took significant time in prompt review and iteration. Even then, the application rarely started without configuration or logic errors on the first try.
 
 We got tons of errors due to various reasons - dependency versions, wrong/missing configs, incorrect server start file, incomplete API endpoints etc
 
 And these are errors that are stopping the application to start. After that comes - 
-- LLM writing anti-pattern code throughout the repository, not following the rules
-- CORS and SSL errors are very often despite putting the correct way to handle them in prompt
-- Logic errors in business logic is always there no matter what
-- The new created functionalities heavily deviates from existing Java application as Java + Spring boot code cannot be directly put in plain TypeScript. Dependency Injection, Inversion of Control, JPA/Hibernate, other plugins are not directly available as solutions in TS/JS environments to be used.
+- **Anti-patterns**: LLMs frequently wrote anti-patterns or ignored project-specific conventions.
+- **Security & Config**: CORS and SSL errors persisted despite explicit handling instructions in the prompt.
+- **Logic Errors**: Subtle business logic bugs were persistent and hard to catch in the generated code.
+- **Framework Mismatch**: The functionality often deviated from the Java reference because concepts like Dependency Injection or JPA don't map 1:1 to plain TypeScript without a robust framework, which the LLM struggled to scaffold correctly.
 
 ***
 
-After going through this whole procedure, we were starting to hate ourselves as we understood nothing but are just taking errors from commandline and pasting into copilot **Agent Mode** in hopium that it resolves them. And to our suprise, it solves 3 bugs and created 4 more. This has been a very common trend in my experience that unless someone with deep understanding and knowledge of end result is using these models, they end up working hours thinking they are moving forward, but are rather going in circles around the same problem.
+By the end of this procedure, the team was fatigued. We were often pasting commandline errors directly into the AI's **Agent Mode**, hoping it would resolve them. Frequently, it would fix three bugs only to introduce four new ones. A common trend emerged: without a deep understanding of the underlying system, we felt we were moving forward when we were actually circling the same problems.
 
-And the worst part is, after 3 months of vibe coding, I felt I lost more knowledge than I could learn during this team and felt dreaded due to cut throat deadlines to build it. I forgot the JavaScript syntax to make **fetch** requests while writing domain layer, business layer and repository layer code for a big backend application.
+Worst of all, after months of this workflow, I felt my core coding skills were on a decline. I found myself forgetting basic syntax because I was so reliant on the model to handle the implementation details.
 
 ***
 
-### Taking Shortcuts For Fixing Errors
+### The Trap of Over Reliance
 
-When it was found to be too time consuming to read and understand everything, our reaction was to simply copy the errors and paste into chat window for agentic model to fix it. Whether it fixes the logic only or changes code structure or modifies the tests for 100% coverage, it's the model's choice now.
+When manual review became too time consuming, the temptation to blindly copy paste errors into the chat window became irresistible. Whether the model fixed the logic, refactored the code, or modified the tests to force a pass, we devs often accepted them without much scrutiny.
 
-Despite not writing manual code, it felt dreaded and mentally tired after performing these tasks. It seemed like everyone was just taking shortcuts via LLM to get things done - 
+This led to a pattern of shortcuts across the team:
 
-- Architect was telling LLM to create architecture and core architecture prompts without much review
-- Product Manager used prompts to create stories without proper validation and scope check
-- Devs ran the prompts and copied the errors into LLM to fix it and understood code partially with unit tests created with prompts as well
-- Testing team used prompts to create their integration and E2E tests 
+- **Architecture**: Critical design decisions were sometimes offloaded to the LLM without sufficient constraint or review.
+- **Requirements**: User stories were generated via prompts, missing edge cases and specific business contexts.
+- **Implementation**: Developers acted as middlemen between the compiler giving errors and the LLM, without understanding the 'why' behind a fix.
+- **Testing**: Test cases were often AI generated, which created a risk of circular validation where the AI writes tests that pass its own buggy code.
 
-Since everyone was offloading their logical thinking to LLMs, we had ton of confusion regarding the desired application and functionality we wanted and combine this with hard deadlines to wrap things fast, it was a big mess for everyone.
+With logical thinking partially offloaded to LLMs, confusion grew regarding the application's actual behavior versus its desired functionality.
 
 After 2 weeks of heavy vibe coding and prompting to make a 8k+ lines PR which I had to explain to Architect what each method and code block does, it got 100+ review comments that I fixed with teammate in next 2 days and merged into main.
 
 The best part of this whole process of us understanding the code line by line as we had to explain it in same way to our Architect and they gave nitpicks as well which made this code more aligned to desired structure. Thankfully, since we had so much discussion regarding each method and logic, our team's tests hardly failed and did not require any further changes while other team doing similar work had many QA tests failing and required logical rework for few components due to bad vibes.
 
-As more pressure was built on use to ship fast, everyone made a choice to take an **easy** path and not the **simple** one. The easy path was to choose **speed now and complexity later** whereas the **simple** path was to sit and think about making correct choices. The **simple** path was now being avoided as it was **slower** and if every company is saying they are shipping fast with AI, we needed to ship even faster!
+As pressure built on us to ship fast, everyone made a choice to take the **easy** path rather than the **simple** one. The easy path was to choose **speed now and complexity later**, whereas the **simple** path required sitting down to make correct architectural choices. The simple path was avoided because it felt "slower," and in a race where every company claims to ship fast with AI, we felt the need to ship even faster.
 
 This whole 3 month stint was quite a lesson for me for how to use and not use LLMs to utilise them for my workflows while developing applications.
 
@@ -103,7 +103,7 @@ This whole 3 month stint was quite a lesson for me for how to use and not use LL
 - **Don't waste time creating curated and complete prompts**  After sometime either the prompt will be very large or it will take so much time to create prompts that the development speed will feel slower than before. The way I do is to solve big problems/tasks into smaller problems for building stuff and put in markdown format (think like Jira story) and then for each smallest subtask, I give smaller prompt of max 3-10 lines with task details mentioned to perform. This leads to smaller changes to review and validate
 - **Don't offload the logic to LLMs** - Having deep understanding of existing and desired business logic is important as otherwise you might feel lost due to scope creep and anti patterns created throughout codebase by LLMs which would feel hard to understand and then you might give up thinking
 - **Lack of Planning** - Before writing single line code, had we planned the desired stage to reach, we would have avoided a lot of time wasted in creating and cleaning messy code. The quote "Give me six hours to chop down a tree and I'll spend the first four sharpening the axe" makes a lot more sense to me now as I wish to first fully understand the things to be done before writing a single line of code
-- **Management expectations** - There was a growing disconnect. When we hit blockers, the solution was always "use the AI more." I heard classic lines like, "Why is it taking so long if we have AI?" or "Don't just ask why, find the solution." But when the AI-generated code failed, the tone shifted to "You can't use AI blindly." It became a catch 22 situation for us devs.
+- **Managing Expectations** - There was a disconnect regarding *how* AI automates work. When blockers arose, the suggestion was often to "use the AI more," assuming it was a magic wand. However, when AI-generated code failed, the validity of the tool itself was questioned. It created a tension between "move fast with AI" and "why is the AI breaking things?"
 
 ***
 
@@ -113,7 +113,7 @@ With LLMs, it has become fairly easier to **understand the design, architecture 
 
 To me these tools seem promising to suggest code and improve understanding of existing systems, making it easier for people to gain knowledge of anything with just natural language instructions, but the idea of agents replacing humans seems far from reality to me.
 
-We ourselves had this setup where we hand(vibe) crafted prompts for **story creation**, **code structure**, **functional requirements**, **code review**, **unit testing**, **QA testing** and yet these workflows failed for us. It was because it required human developers to further review this all mess created as whether these actually work as expected or not. If this vibe coded agentic development works in first or second shot then yes you won! If it fails, then you wasted millions of tokens (real money btw), hours of time and human effort to review for nothing.
+We handcrafted elaborate prompts for **story creation**, **code structure**, **requirements**, and **testing**. Yet, these workflows often faltered because they still required human developers to deeply review the output. If the "vibe coded" agentic development works on the first try, it's a massive win. If it fails, you've spent significant tokens and human hours on a review process that is often harder than writing the code from scratch.
 
 Q. Is this effort and money acceptable for a POC or a startup application to reach market early? 
 
@@ -129,6 +129,6 @@ At the end, impact matters the most. If you build a complex application via vibe
 
 **So where is your leverage apart from faster delivery to market which now everyone has? If everyone has the same leverage then probably it's not a leverage anymore.** 
 
-To me it feels like that now stability, reliability and trust for security along with ease of usage might turn out to be of higher importance for software experiences as we move further into 2026. 
+To me, it feels that stability, reliability, and security trust—along with ease of usage—will become the true differentiators for software experiences as we move further into 2026. 
 
 I would be using GitHub copilot as a part of my daily driver with Gemini or ChatGPT web in future as well to learn and suggest code to improve and speed up my learning. At the same time I believe my knowledge and understanding of systems and how to solve problems will remain my biggest leverage as I refuse to offload my problem solving and thinking capabilities to LLMs.
