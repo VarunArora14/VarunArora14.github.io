@@ -1,7 +1,7 @@
 ---
 title: "Only Vibe Coding Experiment"
 date: 2025-12-10T14:43:12+05:30
-draft: false
+draft: true
 tags: ["LLM", "Vibe Coding"]
 ---
 
