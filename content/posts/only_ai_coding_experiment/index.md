@@ -1,13 +1,13 @@
 ---
 title: "Only Vibe Coding Experiment"
-date: 2026-12-10T14:43:12+05:30
-draft: true
+date: 2025-12-10T14:43:12+05:30
+draft: false
 tags: ["LLM", "Vibe Coding"]
 ---
 
 ### Let's Vibe Code
 
-My team encountered an interesting directive from leadership: to **exclusively use "vibe coding"** (AI-driven development) to build applications. The goal was to accelerate time-to-market and streamline feature delivery.
+My team encountered an interesting directive from leadership: to **exclusively use "vibe coding"** (AI-driven development) to build applications. The goal was to accelerate time to market and streamline feature delivery.
 
 The existing setup relied on numerous Java Spring Boot microservices, which were perceived as heavy and slower to iterate on compared to a JavaScript/TypeScript ecosystem. The hypothesis was that since LLMs excel at TypeScript, switching tech stacks would allow us to leverage AI more effectively than with enterprise Java.
 
