@@ -79,3 +79,5 @@ graph TD
     UI -->|JSON/Tabular Data| API
     User((DevOps Team)) -->|View Inventory| UI
 ```
+
+Diagram source: https://www.eraser.io/ai/mermaid-diagram-editor
