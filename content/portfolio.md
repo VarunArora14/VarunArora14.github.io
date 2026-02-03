@@ -233,7 +233,7 @@ showReadingTime: false
 
 <div class="portfolio-intro">
     <h2>Technical Portfolio</h2>
-    <p>Innovative projects showcasing full-stack development, cloud architecture, and AI/ML expertise</p>
+    <p>Innovative projects on backend, data engineering and AI</p>
 </div>
 {{< /rawhtml >}}
 
