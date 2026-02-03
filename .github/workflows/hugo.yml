@@ -61,6 +61,16 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
+      - name: Verify build output
+        run: |
+          echo "Checking build output..."
+          ls -la public/
+          if [ ! -f public/index.html ]; then
+            echo "ERROR: index.html not found in public directory!"
+            exit 1
+          fi
+          echo "Build verification successful - index.html exists"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
