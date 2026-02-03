@@ -9,97 +9,230 @@ showReadingTime: false
 {{< rawhtml >}}
 <style>
 :root {
-    --gradient-a: #0ea5e9; /* sky-500 */
-    --gradient-b: #14b8a6; /* teal-500 */
-    --gradient-accent: linear-gradient(135deg, var(--gradient-a) 0%, var(--gradient-b) 100%);
-  --glass-bg: rgba(255,255,255,0.55);
-  --glass-border: rgba(255,255,255,0.35);
-  --glass-shadow: 0 8px 32px rgba(31,38,135,0.12);
-  --radius-lg: 18px;
-  --radius-sm: 6px;
-  --transition: 0.35s cubic-bezier(.34,.9,.41,.99);
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --radius: 8px;
+  --card-bg: var(--entry, #fff);
+  --card-border: var(--border, #e5e7eb);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
-[data-theme='dark'] :root, body.dark :root { /* fallback if theme toggles add class */ }
 
-body.dark .project-card { background: rgba(20,22,34,0.65); backdrop-filter: blur(14px) saturate(140%); }
-body.dark .skills-section { background: rgba(40,44,58,0.55); }
+[data-theme='dark'] {
+  --card-bg: var(--entry, #1d1e20);
+  --card-border: #374151;
+}
 
 .portfolio-intro {
-  text-align:center;
-  margin:2.2rem 0 3.2rem;
-  padding:2.4rem 2rem;
-  background:var(--gradient-accent);
-  border-radius:var(--radius-lg);
-  color:#fff;
-  position:relative;
-  overflow:hidden;
+  text-align: center;
+  margin: 3rem 0;
+  padding: 1rem;
 }
-.portfolio-intro:after{
-  content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 15%,rgba(255,255,255,.35),transparent 60%);mix-blend-mode:overlay;pointer-events:none;
+
+.portfolio-intro h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(120deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-weight: 800;
 }
-.portfolio-intro h2{margin:0 0 1rem;font-size:clamp(2rem,4vw,2.75rem);font-weight:700;letter-spacing:.5px;}
-.portfolio-intro p{font-size:1.08rem;opacity:.92;margin:0;max-width:780px;margin-inline:auto;line-height:1.5;}
 
-.toolbar {display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;margin:0 0 2.2rem;}
-.filter-btn{background:var(--code-bg);border:1px solid var(--border);padding:.55rem 1rem;border-radius:30px;font-size:.72rem;letter-spacing:.55px;text-transform:uppercase;cursor:pointer;position:relative;font-weight:600;color:var(--secondary);transition:var(--transition);backdrop-filter:blur(6px);} 
-.filter-btn.active,.filter-btn:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;box-shadow:0 4px 18px -3px rgba(4,120,180,.45);} 
-
-/* density toggle removed */
-
-.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:2.1rem;margin:2.2rem 0;}
-
-.project-card{background:var(--glass-bg);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:1.9rem 1.75rem;box-shadow:var(--glass-shadow);transition:var(--transition);position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;min-height:340px;}
-.project-card:before{content:"";position:absolute;inset:0;background:linear-gradient(140deg,rgba(255,255,255,.28),rgba(255,255,255,0) 55%);opacity:.55;pointer-events:none;}
-.project-card:after{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gradient-a),var(--gradient-b));opacity:.9;}
-.project-card:hover{transform:translateY(-6px) scale(1.012);box-shadow:0 18px 55px -15px rgba(0,0,0,.28);}
-/* Removed gradient hover effect on titles as requested */
-/* .project-card:hover .project-title{background:linear-gradient(90deg,var(--gradient-a),var(--gradient-b));-webkit-background-clip:text;color:transparent;} */
-
-.badge-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem;}
-.meta-badge{font-size:.62rem;font-weight:700;letter-spacing:.5px;padding:.35rem .55rem;border-radius:6px;text-transform:uppercase;background:linear-gradient(120deg,#313a5c,#1f2435);color:#cbd5e1;border:1px solid #3c4869;box-shadow:0 1px 3px rgba(0,0,0,.4);}
-.meta-badge.accent{background:linear-gradient(120deg,var(--gradient-a),var(--gradient-b));color:#fff;border:none;}
-.meta-badge.alt{background:#12a34a;border:none;color:#fff;}
-
-.project-header{margin:0 0 1.1rem;}
-.project-title{font-size:1.35rem;font-weight:700;margin:0 0 .55rem;color:var(--primary);line-height:1.25;transition:var(--transition);}
-.project-description{color:var(--secondary);line-height:1.55;margin-bottom:1.1rem;font-size:.95rem;}
-
-.tech-stack{display:flex;flex-wrap:wrap;gap:.45rem;margin:.75rem 0 1.1rem;}
-.tech-badge{background:linear-gradient(135deg,var(--gradient-a),var(--gradient-b));color:#fff;padding:.42rem .75rem;border-radius:18px;font-size:.72rem;font-weight:600;letter-spacing:.3px;box-shadow:0 2px 6px -1px rgba(118,75,162,.45);}
-
-.skills-section{background:var(--code-bg);padding:.85rem .9rem;border-radius:12px;margin-top:auto;border:1px solid var(--border);}
-.skills-title{font-weight:600;margin:0 0 .35rem;color:var(--primary);font-size:.75rem;letter-spacing:.6px;text-transform:uppercase;}
-.skills-list{color:var(--secondary);font-size:.72rem;line-height:1.35;}
-
-.project-links{display:flex;gap:.75rem;margin-top:1.05rem;flex-wrap:wrap;}
-.project-link{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border-radius:9px;text-decoration:none;font-weight:600;font-size:.73rem;letter-spacing:.3px;transition:var(--transition);position:relative;}
-.project-link:focus-visible{outline:2px solid var(--gradient-a);outline-offset:2px;}
-.github-link{background:var(--code-bg);color:var(--content);border:1px solid var(--border);}
-.github-link:hover{background:#333;color:#fff;}
-.demo-link{background:var(--gradient-accent);color:#fff;}
-.demo-link:hover{transform:translateY(-2px) scale(1.03);} 
-.medium-link{background:#12a34a;color:#fff;}
-.medium-link:hover{background:#0e8a3e;}
-
-.enter-anim{opacity:0;transform:translateY(18px) scale(.98);}
-.enter-anim.visible{opacity:1;transform:translateY(0) scale(1);transition:var(--transition);}
-
-/* compact view removed */
-
-@media (max-width: 860px){
-  .project-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+.portfolio-intro p {
+  color: var(--secondary);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
-@media (max-width: 600px){
-  .portfolio-intro{padding:1.8rem 1.2rem;}
-  .project-grid{gap:1.4rem;}
-  .project-card{padding:1.25rem 1.1rem;}
-  .project-title{font-size:1.15rem;}
-  .tech-badge{font-size:.65rem;padding:.35rem .6rem;}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--accent);
+}
+
+.project-header {
+  margin-bottom: 1rem;
+}
+
+.project-title {
+  margin: 0.75rem 0;
+  font-size: 1.4rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.badge-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.meta-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  background: var(--tertiary);
+  color: var(--secondary);
+  font-weight: 500;
+  border: 1px solid var(--border);
+}
+
+.meta-badge.accent {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.project-description {
+  font-size: 1rem;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  line-height: 1.7;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-badge {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  background: var(--tertiary);
+  color: var(--primary);
+  border: 1px solid transparent;
+}
+.project-card:hover .tech-badge {
+    border-color: var(--border);
+}
+
+.skills-section {
+  background: var(--tertiary);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+}
+[data-theme='dark'] .skills-section { background: rgba(255,255,255,0.03); }
+
+.skills-title {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--primary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.skills-list {
+  color: var(--secondary);
+}
+
+.project-links {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: auto;
+  align-items: center;
+}
+
+.project-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: opacity 0.2s;
+}
+
+.project-link:hover {
+  opacity: 0.8;
+}
+
+/* GitHub repo stats styling */
+.repo-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--secondary);
+}
+
+.enter-anim {
+    animation: fadeIn 0.4s ease-out forwards;
+    opacity: 0; 
+}
+.enter-anim.visible {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .portfolio-intro h2 { font-size: 2rem; }
 }
 </style>
 
 <div class="portfolio-intro">
-    <h2>🚀 Technical Portfolio</h2>
+    <h2>Technical Portfolio</h2>
     <p>Innovative projects showcasing full-stack development, cloud architecture, and AI/ML expertise</p>
 </div>
 {{< /rawhtml >}}
@@ -119,7 +252,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
 <div class="project-card enter-anim" data-category="backend kubernetes" data-repo="url-shortener-system-design">
     <div class="project-header">
         <div class="badge-row"><span class="meta-badge accent">Featured</span><span class="meta-badge">K8s</span><span class="meta-badge">Caching</span></div>
-        <h3 class="project-title">🔗 Scalable URL Shortener</h3>
+        <h3 class="project-title">Scalable URL Shortener</h3>
     </div>
     
     <div class="project-description">
@@ -142,13 +275,13 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
     
     <div class="project-links">
         <a href="https://github.com/VarunArora14/url-shortener-system-design" class="project-link github-link" target="_blank">
-            📂 View Code
+            View Code
         </a>
         <a href="https://medium.com/@varunarora1408/url-shortener-system-design-implementation-part-1-afd97618d917" class="project-link medium-link" target="_blank">
-            📖 Part 1 - Architecture
+            Part 1 - Architecture
         </a>
         <a href="https://medium.com/@varunarora1408/url-shortener-system-design-implementation-part-2-0bd9b7a27742" class="project-link medium-link" target="_blank">
-            📖 Part 2 - Deployment
+            Part 2 - Deployment
         </a>
     </div>
 </div>
@@ -156,7 +289,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
 <div class="project-card enter-anim" data-category="realtime backend" data-repo="vdocs">
     <div class="project-header">
         <div class="badge-row"><span class="meta-badge">Realtime</span><span class="meta-badge">Collab</span></div>
-        <h3 class="project-title">📝 vDocs - Collaborative Editor</h3>
+        <h3 class="project-title">vDocs - Collaborative Editor</h3>
     </div>
     
     <div class="project-description">
@@ -179,7 +312,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
     
     <div class="project-links">
         <a href="https://github.com/VarunArora14/vdocs" class="project-link github-link" target="_blank">
-            📂 View Code
+            View Code
         </a>
     </div>
 </div>
@@ -187,7 +320,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
 <div class="project-card enter-anim" data-category="realtime ai" data-repo="align">
     <div class="project-header">
         <div class="badge-row"><span class="meta-badge accent">Mobile</span><span class="meta-badge">AI</span></div>
-        <h3 class="project-title">📅 Align – Smart Reminders</h3>
+        <h3 class="project-title">Align – Smart Reminders</h3>
     </div>
     
     <div class="project-description">
@@ -210,10 +343,10 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
     
     <div class="project-links">
         <a href="https://github.com/VarunArora14/align" class="project-link github-link" target="_blank">
-            📂 View Code
+            View Code
         </a>
         <a href="https://github.com/VarunArora14/align#readme" class="project-link demo-link" target="_blank">
-            📖 README & Screenshots
+            README & Screenshots
         </a>
     </div>
 </div>
@@ -221,7 +354,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
 <div class="project-card enter-anim" data-category="ai rag" data-repo="Personal-Blog-Chatbot">
     <div class="project-header">
         <div class="badge-row"><span class="meta-badge accent">Live</span><span class="meta-badge">RAG</span></div>
-        <h3 class="project-title">🤖 Personal Blog Chatbot</h3>
+        <h3 class="project-title">Personal Blog Chatbot</h3>
     </div>
     
     <div class="project-description">
@@ -244,13 +377,13 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
     
     <div class="project-links">
         <a href="https://github.com/VarunArora14/Personal-Blog-Chatbot" class="project-link github-link" target="_blank">
-            📂 View Code
+            View Code
         </a>
         <a href="https://personal-blog-chatbot.streamlit.app/" class="project-link demo-link" target="_blank">
-            🚀 Live Demo
+            Live Demo
         </a>
         <a href="https://medium.com/@varunarora1408/building-rag-chatbot-on-my-personal-blog-ff89ac772c69" class="project-link medium-link" target="_blank">
-            📖 Technical Article
+            Technical Article
         </a>
     </div>
 </div>
@@ -258,7 +391,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
 <div class="project-card enter-anim" data-category="ai kubernetes rag competition" data-repo="Kubernetes-Documentation-Bot">
     <div class="project-header">
         <div class="badge-row"><span class="meta-badge alt">Competition</span><span class="meta-badge">HyDE</span><span class="meta-badge">QD</span></div>
-        <h3 class="project-title">📚 Kubernetes Documentation Bot</h3>
+        <h3 class="project-title">Kubernetes Documentation Bot</h3>
     </div>
     
     <div class="project-description">
@@ -281,10 +414,10 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
     
     <div class="project-links">
         <a href="https://github.com/VarunArora14/Kubernetes-Documentation-Bot" class="project-link github-link" target="_blank">
-            📂 View Code
+            View Code
         </a>
         <a href="https://ai.google.dev/competition/projects/varun-arora" class="project-link demo-link" target="_blank">
-            🏆 Competition Entry
+            Competition Entry
         </a>
     </div>
 </div>
@@ -292,7 +425,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
 <div class="project-card enter-anim" data-category="ai rag" data-repo="GenAI-Cookbook">
     <div class="project-header">
         <div class="badge-row"><span class="meta-badge">Playground</span><span class="meta-badge">Agents</span></div>
-        <h3 class="project-title">🧠 GenAI Cookbook</h3>
+        <h3 class="project-title">GenAI Cookbook</h3>
     </div>
     
     <div class="project-description">
@@ -315,7 +448,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
     
     <div class="project-links">
         <a href="https://github.com/VarunArora14/GenAI-Cookbook" class="project-link github-link" target="_blank">
-            📂 View Code
+            View Code
         </a>
     </div>
 </div>
@@ -328,18 +461,18 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
 ---
 
 {{< rawhtml >}}
-<div style="text-align: center; margin: 3rem 0; padding: 2rem; background: var(--code-bg); border-radius: 15px;">
-    <h3 style="margin-bottom: 1rem; color: var(--primary);">💼 Looking for Collaboration?</h3>
-    <p style="margin-bottom: 1.5rem; color: var(--secondary);">I'm always interested in discussing new opportunities, technical challenges, and innovative projects.</p>
+<div style="text-align: center; margin: 4rem 0 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+    <h3 style="margin-bottom: 1rem; color: var(--primary); font-size: 1.5rem;">Looking for Collaboration?</h3>
+    <p style="margin-bottom: 2rem; color: var(--secondary); max-width: 600px; margin-inline: auto;">I'm always interested in discussing new opportunities, technical challenges, and innovative projects.</p>
     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="https://github.com/VarunArora14" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: #333; color: white; text-decoration: none; border-radius: 8px; font-weight: 500;" target="_blank">
-            🔗 GitHub Profile
+        <a href="https://github.com/VarunArora14" class="project-link github-link" target="_blank" style="padding: 0.6rem 1.2rem; background: var(--card-bg); border: 1px solid var(--border);">
+            GitHub Profile
         </a>
-        <a href="https://medium.com/@varunarora1408" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: #12a34a; color: white; text-decoration: none; border-radius: 8px; font-weight: 500;" target="_blank">
-            ✍️ Technical Blog
+        <a href="https://medium.com/@varunarora1408" class="project-link github-link" target="_blank" style="padding: 0.6rem 1.2rem; background: var(--card-bg); border: 1px solid var(--border);">
+            Technical Blog
         </a>
-        <a href="https://varunarora14.github.io/" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 8px; font-weight: 500;" target="_blank">
-            🌐 Full Blog
+        <a href="https://varunarora14.github.io/" class="project-link github-link" target="_blank" style="padding: 0.6rem 1.2rem; background: var(--card-bg); border: 1px solid var(--border);">
+            Full Blog
         </a>
     </div>
 </div>
@@ -382,8 +515,7 @@ body.dark .skills-section { background: rgba(40,44,58,0.55); }
             const data = await fetchRepo(repo); if(!data) continue;
             const infoBar = document.createElement('div');
             infoBar.className='repo-stats';
-            infoBar.style.display='flex';infoBar.style.alignItems='center';infoBar.style.gap='0.85rem';infoBar.style.marginTop='0.85rem';infoBar.style.fontSize='.66rem';infoBar.style.letterSpacing='.5px';infoBar.style.opacity='.85';infoBar.style.flexWrap='wrap';
-            infoBar.innerHTML = `<span title="Stars">⭐ ${data.stargazers_count}</span><span title="Last Push">🕒 ${new Date(data.pushed_at).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}</span>`;
+            infoBar.innerHTML = `<span style="font-weight:600">★ ${data.stargazers_count}</span><span>Updated ${new Date(data.pushed_at).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}</span>`;
             const links = card.querySelector('.project-links');
             if(links) links.parentNode.insertBefore(infoBar, links);
         }
